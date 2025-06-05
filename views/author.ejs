@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.2.1/js/bootstrap.min.js"></script>    
+    <title>Portfolio</title>
+</head>
+
+<body>
+    <!-- frame katta pagemizni ajratish uchun shartli ravishda css berdik -->
+    <div class="frame">   <!-- bu brauzerdagi ochib turgan umumiy katta pagemiz ramkasi hisoblanadi -->
+        <!-- main_frame ramkamizni yana 3-ta(left, middle, right frame) ramkaga bo'lib ob, css qismida razmerlarini berib bo'lib olamiz -->
+        <div class="main_frame">
+            <div class="left_frame">
+                <div class="left_1">
+                    <div class="left_1_rasm">
+                        <img src="images/profile.png"
+                         width="156px"
+                          height="142px" 
+                         alt="" 
+                         />
+                    </div>
+                    <div class="left_2_ism"><%=user.name%></div>
+                    <div class="left_3_kasbi"><%=user.profession%></div>
+                    <div class="left-iconlar">
+                        <a class="link_href" href="">
+                            <div class="left-icon">
+                                <img src="icon/facebook.svg" class="icon-1" />
+
+                            </div>
+                        </a>
+                        <a class="link_href" href="">
+                            <div class="left-icon">
+                                <img src="icon/instagram.svg" class="icon-1" />
+
+                            </div>
+                        </a>
+                        <a class="link_href" href="">
+                            <div class="left-icon">
+                                <img src="icon/twitter.svg" class="icon-1" />
+
+                            </div>
+                        </a>
+                        <a class="link_href" href="">
+                            <div class="left-icon">
+                                <img src="icon/linkeding.svg" class="icon-1" />
+
+                            </div>
+                        </a>
+                        <a class="link_href" href="">
+                            <div class="left-icon">
+                                <img src="icon/youtube.svg" class="icon-1" />
+
+                            </div>
+                        </a>
+                        <a class="link_href" href="">
+                            <div class="left-icon">
+                                <img src="icon/dribbble.svg" class="icon-1" />
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="marginer"></div>
+                <div class="left_2"></div>
+                <div class="marginer"></div>
+                <div class="left_3"></div>
+                <div class="marginer"></div>
+                <div class="left_4"></div>
+                <div class="marginer"></div>
+                <div class="left_5"></div>
+                <div class="marginer"></div>
+            </div>
+            <div class="midd_frame"></div>
+            <div class="right_frame"></div>
+        </div>    <!-- main_frame bu brauzerdagi ochib turgan umumiy katta pagemiz ichidagi asosiy sahifamiz hisoblanadi. yani biz yasamoqchi bo'lgan(publish qilmoqchi bo'lgan) uch qism -->
+    </div>
+</body>
+
+</html>
