@@ -375,7 +375,130 @@
     margin-bottom: 20px;
     margin-top: 39px;
     border: 1.5px solid #f0f0f6;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.marginer1 {
+   /* Rectangle 7 */
+position: absolute;
+width: 217px;
+height: 2px;
+left: 48px;
+right: -45px;
+top: 621px;
+bottom: -619px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.marginer2 {
+    /* Line */
+position: absolute;
+width: 220px;
+height: 4px;
+left: 47px;
+right: -47px;
+top: 662px;
+bottom: -513px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.marginer3 {
+    /* Line */
+position: absolute;
+width: 220px;
+height: 4px;
+left: 47px;
+right: -47px;
+top: 703px;
+bottom: -554px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.marginer4 {
+    /* Line */
+position: absolute;
+width: 220px;
+height: 4px;
+left: 47px;
+right: -47px;
+top: 823px;
+bottom: -585px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.marginer5 {
+    /* Rectangle 16 */
+position: absolute;
+width: 207px;
+height: 2px;
+left: 48px;
+right: -35px;
+top: 867px;
+bottom: -865px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.marginer6 {
+    /* Line */
+position: absolute;
+width: 220px;
+height: 4px;
+left: 47px;
+right: -47px;
+top: 909px;
+bottom: -671px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.marginer7 {
+    /* Rectangle 18 */
+position: absolute;
+width: 220px;
+height: 4px;
+left: 47px;
+top: 952px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.marginer8 {
+    /* Rectangle 21 */
+position: absolute;
+width: 207px;
+height: 2px;
+left: 48px;
+right: -35px;
+top: 996px;
+bottom: -994px;
+background: rgb(255, 180, 0);
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .left_side2 {
     position: relative;
     width: 221px;
