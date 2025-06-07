@@ -4,6 +4,7 @@
   "description": "express-va-ejs-frameworklar",
   "main": "server.js",
   "scripts": {
+    "start-test": "node test.js",
     "start": "node server.js",
     "dev": "nodemon server.js",
     "train": "node train.js",
