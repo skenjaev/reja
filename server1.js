@@ -1,23 +1,4 @@
-
-// EJS Frameworkda Portfolio publishing qilamiz.
-
-console.log("Web serverni boshlash");
-
-const express = require("express");
-const app = express();
-const http = require("http");
-const fs = require("fs");
-
-let user;
-fs.readFile("database/user.json", "utf-8", (err, data) => {
-    if (err) {
-        Console.log("ERROR:", err);
-    } else {
-        user = JSON.parse(data); // JSON ma'lumotlarini o'qish yoki ulash
-    }
-    });
-
-// Express web servesi 4-ga bo'linadi
+/*// Express web servesi 4-ga bo'linadi
 
 // 1) Kirish code
 app.use(express.static("public")); // Static fayllar uchun public folderni ochiq qilish
@@ -41,7 +22,7 @@ app.get('/author', (req, res) => {
         });
 
 app.get("/", function (req, res) {
-    res.render("reja"); // Bosh sahifa uchun `harid.ejs` faylini render qilish
+    res.render("harid"); // Bosh sahifa uchun `harid.ejs` faylini render qilish
 });
 
 // Serverni yaratish va portni belgilash
@@ -49,5 +30,5 @@ const server = http.createServer(app);
 let PORT = 3000;
 
 server.listen(PORT, function () {
-    console.log(`The server is running successfully on port: ${PORT}, http://localhost:${PORT}`);
-});
+    console.log(`The server is running successfully on port: ${PORT}`);
+});*/
