@@ -1,3 +1,3 @@
 git add .
-git commit -m "feat: Porfolio publishing completed"
+git commit -m "feat: mongoDB ulanish logik"
 git push origin master

@@ -1,53 +1,27 @@
-
-// EJS Frameworkda Portfolio publishing qilamiz.
-
-console.log("Web serverni boshlash");
-
-const express = require("express");
-const app = express();
+const mongodb = require("mongodb");
 const http = require("http");
-const fs = require("fs");
 
-let user;
-fs.readFile("database/user.json", "utf-8", (err, data) => {
+let db;
+const connectionString = "mongodb+srv://Dennis:DennisMongoDBAtlasParoli$@cluster0.rcohluw.mongodb.net/Reja?retryWrites=true&w=majority";
+
+mongodb.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}, (err, client) => {
     if (err) {
-        Console.log("ERROR:", err);
+        console.log("ERROR on connection MongoDB");
     } else {
-        user = JSON.parse(data); // JSON ma'lumotlarini o'qish yoki ulash
-    }
-    });
-
-// Express web servesi 4-ga bo'linadi
-
-// 1) Kirish code
-app.use(express.static("public")); // Static fayllar uchun public folderni ochiq qilish
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// 2: Session code
-// (Session kodlari qo'shilmagan, kerak bo'lsa keyinchalik qo'shishingiz mumkin)
-
-// 3: Views code
-app.set("views", "views"); // Views papkasini belgilash
-app.set("view engine", "ejs"); // EJS ni view engine sifatida belgilash
-
-// 4: Routing code
-app.post("/create-item", (req, res) => {
-    // TODO: Ma'lumotlar bazasi bilan ishlash kodini qo'shing
-});
-
-app.get('/author', (req, res) => {
-            res.render("author", { user: user }); // `author.ejs` fayliga ma'lumotlarni yuborish
+        console.log("MongoDB connection succeed");
+        db = client.db();
+        
+        module.exports = client;
+        
+        const app = require("./app");
+        const server = http.createServer(app);
+        let PORT = 3000;
+        
+        server.listen(PORT, function() {
+            console.log(`The server is running successfully on port: ${PORT}, http://localhost:${PORT}`);
         });
-
-app.get("/", function (req, res) {
-    res.render("reja"); // Bosh sahifa uchun `harid.ejs` faylini render qilish
-});
-
-// Serverni yaratish va portni belgilash
-const server = http.createServer(app);
-let PORT = 3000;
-
-server.listen(PORT, function () {
-    console.log(`The server is running successfully on port: ${PORT}, http://localhost:${PORT}`);
+    }
 });
