@@ -1,24 +1,22 @@
-const mongodb = require("mongodb");
+const { MongoClient } = require("mongodb");
 const http = require("http");
 
 let db;
 const connectionString = "mongodb+srv://Dennis:DennisMongoDBAtlasParoli$@cluster0.rcohluw.mongodb.net/Reja?retryWrites=true&w=majority";
 
-mongodb.MongoClient.connect(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}, (err, client) => {
-    if (err) {
-        console.log("ERROR on connection MongoDB:", err);
-    } else {
-        console.log("MongoDB connection succeed");
-        db = client.db();
+// MongoDB 6.x uchun yangi ulanish usuli
+async function connectDB() {
+    try {
+        const client = new MongoClient(connectionString);
+        await client.connect();
         
-        // Database ni global qilish (app.js da ishlatish uchun)
+        console.log("MongoDB connection succeed");
+        db = client.db("Reja");
+        
+        // Database ni global qilish
         global.db = db;
         
-        module.exports = client;
-        
+        // Express app ni yuklash va serverni ishga tushirish
         const app = require("./app");
         const server = http.createServer(app);
         const PORT = process.env.PORT || 3000;
@@ -26,5 +24,12 @@ mongodb.MongoClient.connect(connectionString, {
         server.listen(PORT, function() {
             console.log(`The server is running successfully on port: ${PORT}, http://localhost:${PORT}`);
         });
+        
+    } catch (err) {
+        console.log("ERROR on connection MongoDB:", err);
+        process.exit(1);
     }
-});
+}
+
+// Database ulanishini boshlash
+connectDB();

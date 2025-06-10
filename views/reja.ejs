@@ -1,56 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REJA</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
-          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #b8bbd1;
+            font-family: 'Arial', sans-serif;
+        }
+        .jumbotron {
+            background-color: #ffffff;
+            border-radius: 15px;
+        }
+        .btn-custom {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .list-group-item {
+            border-radius: 10px !important;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            transform: translateX(5px);
+        }
+    </style>
 </head>
-<body style="background-color: #b8bbd1">
-    <div class="container">
-        <h1 class="display-4 text-center py-1">REJA VA MAQSADLAR</h1>
-        <div class="jumbotron p-3 shadow-sm">
+<body>
+    <div class="container mt-4">
+        <h1 class="display-4 text-center py-3 text-primary">REJA VA MAQSADLAR</h1>
+        
+        <!-- Reja qo'shish formi -->
+        <div class="jumbotron p-4 shadow-sm">
             <form id="create-form" action="/create-item" method="POST">
                 <div class="d-flex align-items-center">
-                    <input 
-                        id="create-field" 
-                        name="item" 
-                        autofocus 
-                        autocomplete="off" 
-                        class="form-control mr-3" 
-                        type="text" 
-                        style="flex: 1" 
+                    <input
+                        id="create-field"
+                        name="item"
+                        autofocus
+                        autocomplete="off"
+                        class="form-control mr-3"
+                        type="text"
+                        style="flex: 1"
+                        placeholder="Yangi reja kiriting..."
+                        required
+                        minlength="3"
+                        maxlength="100"
                     />
-                    <button class="btn btn-primary" style="border-radius: 20px">
-                        Yangi Reja Qo'shish
+                    <button class="btn btn-primary btn-custom" type="submit">
+                        <i class="fas fa-plus"></i> Yangi Reja Qo'shish
                     </button>
                 </div>
             </form>
         </div>
-        <ul id="item-list" class="list-group pb-5">
-            <% items.map(function(item) { %>
-                <li class="list-group-item list-group-item-info d-flex align-items-center justify-content-between">
-                    <span class="item-text"><%=item.reja%></span>
-                    <div>
-                        <button 
-                            data-id="<%=item._id%>"
-                            class="edit-me btn btn-secondary btn-sm mr-1"
-                        >O'zgartirish</button>
-                        <button 
-                            data-id="<%=item._id%>"
-                            class="delete-me btn btn-danger btn-sm"
-                        >O'chirish</button>
-                    </div>
-                </li>
-            <% }); %>
-        </ul>
-        
-        <!-- <%= items[1].reja%> -->
-        <button class="btn btn-primary" style="border-radius: 20px">
-            Hamma Rejalarni O'chirish
-        </button>
+
+        <!-- Rejalar ro'yxati -->
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Rejalar ro'yxati (<%= items ? items.length : 0 %>)</h4>
+                <ul id="item-list" class="list-group pb-4">
+                    <% if (items && items.length > 0) { %>
+                        <% items.forEach(function(item, index) { %>
+                            <li class="list-group-item list-group-item-info d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <span class="badge badge-secondary mr-2"><%= index + 1 %></span>
+                                    <span class="item-text font-weight-bold"><%=item.reja%></span>
+                                </div>
+                                <div>
+                                    <button
+                                        data-id="<%=item._id%>"
+                                        class="edit-me btn btn-warning btn-sm mr-1 btn-custom"
+                                        title="O'zgartirish"
+                                    >
+                                        <i class="fas fa-edit"></i> O'zgartirish
+                                    </button>
+                                    <button
+                                        data-id="<%=item._id%>"
+                                        class="delete-me btn btn-danger btn-sm btn-custom"
+                                        title="O'chirish"
+                                    >
+                                        <i class="fas fa-trash"></i> O'chirish
+                                    </button>
+                                </div>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li class="list-group-item text-center text-muted">
+                            <i class="fas fa-inbox fa-3x mb-3"></i>
+                            <p>Hozircha rejalar yo'q. Birinchi rejangizni qo'shing!</p>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Hamma rejalarni o'chirish tugmasi -->
+        <% if (items && items.length > 0) { %>
+            <div class="text-center mt-4">
+                <button id="clean-all" class="btn btn-outline-danger btn-custom">
+                    <i class="fas fa-trash-alt"></i> Hamma Rejalarni O'chirish
+                </button>
+            </div>
+        <% } %>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Reja qo'shish
+            $("#create-form").on("submit", function(e) {
+                const inputValue = $("#create-field").val().trim();
+                if (inputValue.length < 3) {
+                    e.preventDefault();
+                    alert("Reja kamida 3 ta harf bo'lishi kerak!");
+                    return false;
+                }
+            });
+
+            // Rejani o'zgartirish
+            $(".edit-me").on("click", function() {
+                const itemId = $(this).attr("data-id");
+                const currentText = $(this).closest("li").find(".item-text").text();
+                const newValue = prompt("Rejani o'zgartiring:", currentText);
+                
+                if (newValue && newValue.trim() !== "" && newValue.trim() !== currentText) {
+                    $.post("/edit-item", {
+                        id: itemId,
+                        newValue: newValue.trim()
+                    })
+                    .done(function(data) {
+                        location.reload();
+                    })
+                    .fail(function() {
+                        alert("O'zgartirishda xatolik yuz berdi!");
+                    });
+                }
+            });
+
+            // Rejani o'chirish
+            $(".delete-me").on("click", function() {
+                const itemId = $(this).attr("data-id");
+                
+                if (confirm("Haqiqatan ham bu rejani o'chirmoqchimisiz?")) {
+                    $.post("/delete-item", {
+                        id: itemId
+                    })
+                    .done(function(data) {
+                        location.reload();
+                    })
+                    .fail(function() {
+                        alert("O'chirishda xatolik yuz berdi!");
+                    });
+                }
+            });
+
+            // Hamma rejalarni o'chirish
+            $("#clean-all").on("click", function() {
+                if (confirm("Haqiqatan ham barcha rejalarni o'chirmoqchimisiz? Bu amalni bekor qilish mumkin emas!")) {
+                    $.post("/clean-all-items")
+                    .done(function(data) {
+                        location.reload();
+                    })
+                    .fail(function() {
+                        alert("Tozalashda xatolik yuz berdi!");
+                    });
+                }
+            });
+
+            // Input field focus
+            $("#create-field").focus();
+        });
+    </script>
 </body>
 </html>

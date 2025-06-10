@@ -1,5 +1,5 @@
 {
-  "name": "express-va-ejs-frameworklar",
+  "name": "reja-app",
   "version": "1.0.0",
   "description": "express-va-ejs-frameworklar",
   "main": "server.js",
@@ -15,7 +15,11 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "mongodb": "^6.17.0",
+    "mongodb": "^6.17.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
+
+
