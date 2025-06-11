@@ -1,7 +1,9 @@
 console.log("Web Serverni boshlash");
-
 const express = require("express");
+const res = require("express/lib/response");
 const app = express();
+
+
 
 // 1: Kirish code
 app.use(express.static("public"));
@@ -84,7 +86,10 @@ app.post("/delete-item", async (req, res) => {
         const { id } = req.body;
         
         const { ObjectId } = require("mongodb");
-        await global.db.collection("plans").deleteOne({ _id: new ObjectId(id) });
+        await global.db.collection("plans").deleteOne({ _id: new mongodb.ObjectId(id)}, function(err,data) {
+            res.json({state: "success"});
+        }
+    );
         
         res.send("successfully deleted");
         

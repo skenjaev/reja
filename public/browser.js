@@ -49,20 +49,19 @@ document.querySelector(".delete-all").addEventListener("click", function() {
 });
 
 document.addEventListener("click", function(e) {
-    // Delete button
-    if(e.target.classList.contains("btn-delete")) {
-        if(confirm("O'chirishni xohlaysizmi?")) {
+    // Delete oper
+    console.log(e.target);
+    if(e.target.classList.contains("delete-me")) {
+        if(confirm("Aniq o'chirmoqchimisiz?")) {
             // Step 1: Frontend ma'lumotni Backendga yuboradi
             axios
                 .post("/delete-item", {id: e.target.getAttribute("data-id")})
                 .then((response) => {
-                    // Step 6: Frontend qabul qilib UI ni yangilaydi
-                    if(response.data.success) {
-                        e.target.parentElement.parentElement.remove();
-                    }
-                })
+                    console.log(response.data);
+                    e.target.parentElement.parentElement.remove();
+                 })
                 .catch((err) => {
-                    console.log("Xatolik yuz berdi");
+                    console.log("iltimos qaytadan harakat qiling");
                 });
         }
     }

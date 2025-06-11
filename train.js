@@ -236,3 +236,25 @@ const countDigitsLoop = (str) => {
   return count;
 }
 console.log(countDigitsLoop("ad2a54y79wet0sfgb9")); 
+
+
+
+// C-TASK: 
+
+// Shunday function tuzing, u 2ta string parametr ega bolsin, hamda agar har ikkala string bir hil harflardan iborat bolsa true aks holda false qaytarsin
+// MASALAN checkContent("mitgroup", "gmtiprou") return qiladi true;
+
+const letterExist2 = (str, str2) => {
+  return str.split('').sort().join('') === str2.split('').sort().join('');
+}
+console.log(letterExist2("abs", "cba")); // false chiqarishi kerak
+
+console.log(letterExist2("abc", "cba")); // true chiqarishi kerak 
+
+
+// yuqorida foidalangan narsalar tasnifi quydagicha 
+
+// str.split(''): Stringni harflar massiviga aylantiradi.
+// sort(): Harflarni alifbo tartibida joylashtiradi.
+// join(''): Harflar massivini qaytadan stringga aylantiradi.
+// ===: Tartiblangan stringlarni solishtiradi.
