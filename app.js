@@ -110,3 +110,31 @@ app.post("/clean-all-items", async (req, res) => {
 });
 
 module.exports = app;
+
+
+// Delete all operatsiyasi
+app.post("/delete-all", (req, res) => {
+    if (req.body.delete_all) {
+        db.collection("plans").deleteMany({}, function(err, result) {
+            if (err) {
+                console.log(err);
+                res.json({ state: "Xatolik yuz berdi" });
+            } else {
+                res.json({ state: "Hamma rejalar o'chirildi" });
+            }
+        });
+    }
+});
+
+// Asosiy sahifa
+app.get("/", function(req, res) {
+    console.log("user entered /");
+    db.collection("plans").find().toArray((err, data) => {
+        if (err) {
+            console.log(err);
+            res.end("something went wrong");
+        } else {
+            res.render("reja", { items: data });
+        }
+    });
+});
