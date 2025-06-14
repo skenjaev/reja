@@ -267,33 +267,42 @@ MASALAN: const shop = new Shop(4, 5, 2); shop.qoldiq() return hozir 20:40da 4ta 
  */
 
 
-const date = require('date-fns');
-const time = date.format(new Date(), 'HH:mm');
 class Shop {
-    constructor(non, lagmon, cola) {
-        this.products = {
-            non: non,
-            lagmon: lagmon, 
-            cola: cola
-        };
-    }
+  constructor(non, lagmon, cola) {
+      this.products = {
+          non: non,
+          lagmon: lagmon, 
+          cola: cola
+      };
+  }
 
-    qoldiq() {
-        return `hozir ${time}da ${this.products.non}ta non, ${this.products.lagmon}ta lagmon va ${this.products.cola}ta cola mavjud!`;
-    }
+  // Vaqtni olish uchun yordamchi metod
+  getCurrentTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0'); // Soatni 2 xonali formatda olish
+      const minutes = String(now.getMinutes()).padStart(2, '0'); // Daqiqani 2 xonali formatda olish
+      return `${hours}:${minutes}`;
+  }
 
-    sotish(product, amount) {
-        if (this.products[product] >= amount) {
-            this.products[product] -= amount;
-            return `hozir ${time}da ${amount}ta ${product} sotildi`;
-        }
-        return `Kechirasiz, ${product} yetarli emas`;
-    }
+  qoldiq() {
+      const time = this.getCurrentTime();
+      return `hozir ${time}da ${this.products.non}ta non, ${this.products.lagmon}ta lagmon va ${this.products.cola}ta cola mavjud!`;
+  }
 
-    qabul(product, amount) {
-        this.products[product] += amount;
-        return `hozir ${time}da ${amount}ta ${product} qabul qilindi`;
-    }
+  sotish(product, amount) {
+      const time = this.getCurrentTime();
+      if (this.products[product] >= amount) {
+          this.products[product] -= amount;
+          return `hozir ${time}da ${amount}ta ${product} sotildi`;
+      }
+      return `Kechirasiz, ${product} yetarli emas`;
+  }
+
+  qabul(product, amount) {
+      const time = this.getCurrentTime();
+      this.products[product] += amount;
+      return `hozir ${time}da ${amount}ta ${product} qabul qilindi`;
+  }
 }
 
 // Test
@@ -308,36 +317,44 @@ console.log(shop.qoldiq()); // 4ta non, 5ta lagmon, 6ta cola
 /*Kodda ishlatilgan elementlar:
 
 
-1. require() - Modul import qilish
+1. class - Klas
 
-date-fns kutubxonasini ulash uchun
+Shop obyektini yaratish uchun shablon
 
-2. class - Klas yaratish
+2. constructor() - Konstruktor
 
-Shop obyektini aniqlash uchun
+Obyekt yaratilganda boshlang'ich qiymatlar o'rnatish
 
-3. constructor() - Konstruktor
+3. this - Obyekt murojaat
 
-Yangi obyekt yaratilganda boshlang'ich qiymatlar berish
+Joriy obyektning xususiyatlari va metodlariga kirish
 
-4. this - Obyekt xususiyatlariga murojaat
+4. getCurrentTime() - Yordamchi metod
 
-Joriy obyektning ma'lumotlariga kirish
+Joriy vaqtni formatlash uchun
 
-5. Metodlar (qoldiq(), sotish(), qabul())
+5. new Date() - Vaqt obyekti
 
-Obyektning funksiyalari, turli amallarni bajaradi
+Hozirgi sana/vaqtni olish
 
-6. Template literals (backtick va ${})
+6. padStart(2, '0') - Matn formatlash
 
-Matnni o'zgaruvchilar bilan birlashtirish
+Raqamlarni 2 xonali ko'rinishga keltirish (01, 02, 03...)
 
-7. Shartli operator (if)
+7. Template literals (` va ${})
 
-Mahsulot yetarli emasligini tekshirish
+Matn va o'zgaruvchilarni birlashtirish
 
-8. Obyekt (this.products)
+8. Obyekt xususiyatlari (this.products)
 
-Mahsulotlar ma'lumotlarini saqlash
+Ma'lumotlarni saqlash
 
-Bu elementlar birgalikda do'kon boshqaruvi tizimini yaratadi - ma'lumot saqlash, tekshirish va o'zgartirish imkonini beradi. */
+9. Shartli operator (if)
+
+Mahsulot miqdorini tekshirish
+
+10. console.log() - Chiqarish
+
+Natijalarni ekranga chiqarish
+
+Bu elementlar vaqt bilan ishlash, ma'lumot saqlash va mantiqiy tekshirishni ta'minlaydi.재시도Claude는 실수를 할 수 있습니다. 응답을 반드시 다시 확인해 주세요. Sonnet 4 */
