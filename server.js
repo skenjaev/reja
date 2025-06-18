@@ -19,7 +19,7 @@ async function connectDB() {
         // Express app ni yuklash va serverni ishga tushirish
         const app = require("./app");
         const server = http.createServer(app);
-        const PORT = process.env.PORT || 3007;
+        const PORT = process.env.PORT || 4001;
         
         server.listen(PORT, function() {
             console.log(`The server is running successfully on port: ${PORT}, http://localhost:${PORT}`);

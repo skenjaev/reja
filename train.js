@@ -358,3 +358,47 @@ Mahsulot miqdorini tekshirish
 Natijalarni ekranga chiqarish
 
 Bu elementlar vaqt bilan ishlash, ma'lumot saqlash va mantiqiy tekshirishni ta'minlaydi.재시도Claude는 실수를 할 수 있습니다. 응답을 반드시 다시 확인해 주세요. Sonnet 4 */
+
+
+
+
+
+
+
+ /* TASK E
+
+Shunday function tuzing, u bitta string argumentini qabul qilib,
+qabul qilingan stringni teskari ko'rinishda return qilsin
+
+MASALAN: getReverse("hello"); return qilsin "olleh" */
+
+
+
+function getReverse(str) {
+  return str.split('').reverse().join('');
+}
+
+
+console.log(getReverse("hello"));      // "olleh" chiqadi
+console.log(getReverse("JavaScript")); // "tpircSavaJ" chiqadi
+console.log(getReverse("12345"));      // "54321" chiqadi
+
+
+
+
+  /*String metodlari ya'ni yuqorida foydalangan metodlar:
+1. split('')
+
+String-ni bo'laklarga ajratadi
+'' - har bir harfga ajratish
+"hello" → ['h', 'e', 'l', 'l', 'o']
+
+2. reverse()
+
+Massiv elementlarini teskariga o'giradi
+['h', 'e', 'l', 'l', 'o'] → ['o', 'l', 'l', 'e', 'h']
+
+3. join('')
+
+Massiv elementlarini birlashtiradi
+['o', 'l', 'l', 'e', 'h'] → "olleh" */
