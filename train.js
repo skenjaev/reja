@@ -374,14 +374,14 @@ MASALAN: getReverse("hello"); return qilsin "olleh" */
 
 
 
-function getReverse(str) {
-  return str.split('').reverse().join('');
-}
+// function getReverse(str) {
+//   return str.split('').reverse().join('');
+// }
 
 
-console.log(getReverse("hello"));      // "olleh" chiqadi
-console.log(getReverse("JavaScript")); // "tpircSavaJ" chiqadi
-console.log(getReverse("12345"));      // "54321" chiqadi
+// console.log(getReverse("hello"));      // "olleh" chiqadi
+// console.log(getReverse("JavaScript")); // "tpircSavaJ" chiqadi
+// console.log(getReverse("12345"));      // "54321" chiqadi
 
 
 
@@ -402,3 +402,65 @@ Massiv elementlarini teskariga o'giradi
 
 Massiv elementlarini birlashtiradi
 ['o', 'l', 'l', 'e', 'h'] → "olleh" */
+
+
+
+
+/*F-TASK: 
+
+Shunday findDoublers function tuzing, unga faqat bitta string argument pass bolib, agar stringda bir hil harf qatnashgan bolsa true, qatnashmasa false qaytarishi kerak.
+MASALAN: getReverse("hello") return true return qiladi
+
+ */
+
+
+
+function findDoublers(str) {
+  const charCount = {};
+  
+  for (const char of str) {
+    if (charCount[char]) {
+      return true; // Agar harf allaqachon mavjud bo'lsa, true qaytaradi
+    }
+    charCount[char] = 1; // Harfni hisobga oladi
+  }
+  
+  return false; 
+};// Agar hech qachon takrorlanmagan bo'lsa, false qaytaradi
+
+console.log(findDoublers("hello")); // true
+console.log(findDoublers("world")); // false
+
+
+/*Ishlatilgan elementlar haqida ma'lumot:
+
+1. Function Declaration
+
+function findDoublers(str) - funktsiya e'lon qilish
+
+2. String metodlari
+
+str.toLowerCase() - stringni kichik harflarga o'zgartirish
+str.length - string uzunligini olish
+str[i] - string indeksi orqali harfga murojaat
+
+3. Object (Obyekt)
+
+let charCount = {} - bo'sh obyekt yaratish
+charCount[char] - obyektga kalit orqali murojaat
+Obyektda harflarni sanash uchun ishlatiladi
+
+4. For Loop
+
+for (let i = 0; i < str.length; i++) - stringni aylantirish
+
+5. Conditional statements
+
+if (charCount[char]) - shartli tekshirish
+return true/false - qiymat qaytarish
+
+6. Variables
+
+let char - o'zgaruvchi e'lon qilish
+let charCount - obyekt uchun o'zgaruvchi
+ */
